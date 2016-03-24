@@ -1,0 +1,11 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/Users/MOHAMED/Google Drive/Dev/amazon-webapp/public/libs/jquery/test/unit/support.js",
+        "C:/Users/MOHAMED/Google Drive/Dev/amazon-webapp/public/libs/jquery/test/unit/queue.js",
+        "C:/Users/MOHAMED/Google Drive/Dev/amazon-webapp/public/libs/jquery/test/unit/serialize.js",
+        "C:/Users/MOHAMED/Google Drive/Dev/amazon-webapp/public/libs/jquery/test/unit/traversing.js",
+        "C:/Users/MOHAMED/Google Drive/Dev/amazon-webapp/public/libs/jquery/test/unit/selector.js",
+        "C:/Users/MOHAMED/Google Drive/Dev/amazon-webapp/public/libs/jquery/Gruntfile.js",
+        "C:/Users/MOHAMED/Google Drive/Dev/amazon-webapp/public/libs/ng-table/dist/ng-table.js"
+    ]
+}

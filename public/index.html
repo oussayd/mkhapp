@@ -1,0 +1,76 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="amazonPrices">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
+
+    <title>Amazon Warehouse Deals</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <!-- load bootstrap -->
+
+    <!-- SPELLS -->
+    <script src="libs/jquery/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="libs/angular/angular.min.js"></script>
+    <script src="libs/angular-route/angular-route.min.js"></script>
+    <!-- load angular -->
+    <link rel="stylesheet" href="https://rawgit.com/esvit/ng-table/master/dist/ng-table.min.css">
+
+    <script src="libs/ng-table/dist/ng-table.min.js"></script>
+
+    <script src="libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="libs/angulargrid/angulargrid.min.js"></script>
+    <script src="js/core.js">
+    </script>
+    <script src="js/controllers/ngTableController.js"></script>
+    <script src="js/controllers/stController.js"></script>
+    <script src="js/controllers/smartTableController.js"></script>
+
+    <script src="js/services/Articles.js"></script>
+
+    <link href="css/lib/angular.rangeSlider.css" rel="stylesheet">
+    <script src="js/lib/angular.rangeSlider.js"></script>
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+
+<body>
+    <!-- HEADER AND NAVBAR -->
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Amazon Warehouse Deals</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#ngGrid"><i class="fa fa-shield"></i> Grid</a></li>
+
+                    <li><a href="#ngTable"><i class="fa fa-comment"></i> Table</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- MAIN CONTENT AND INJECTED VIEWS -->
+    <div id="main">
+
+        <!-- angular templating -->
+        <!-- this is where content will be injected -->
+        <div ng-view></div>
+
+    </div>
+
+
+</body>
+
+</html>

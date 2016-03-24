@@ -1,0 +1,49 @@
+<div class="container">
+
+
+    <!-- HEADER AND TODO COUNT -->
+    <div class="jumbotron text-center">
+        <h3>Articles Trouvés : <span class="label label-info">{{ articles.length }}</span></h3>
+    </div>
+    <!--
+    <div range-slider min="minPrice" max="maxPrice" model-min="userMinPrice" model-max="userMaxPrice" step="5" attach-handle-values="true"></div>-->
+
+
+    <form class="well form-search">
+        <label>Search:</label>
+        <input type="number" ng-model="prixMax" class="input-medium search-query" placeholder="Prix Max">
+        <input type="number" ng-model="prixMin" class="input-medium search-query" placeholder="Prix Min">
+
+        <input type="number" ng-model="indiceMax" class="input-medium search-query" placeholder="Indice Max">
+        <input type="number" ng-model="indiceMin" class="input-medium search-query" placeholder="Indice Min">
+
+        <input type="number" ng-model="versionMax" class="input-medium search-query" placeholder="Version Max">
+        <input type="number" ng-model="versionMin" class="input-medium search-query" placeholder="Version Min">
+        <input type="date" ng-model="lastUpdateMax" class="input-medium search-query" placeholder="lastUpdate Max">
+        <input type="date" ng-model="lastUpdateMin" class="input-medium search-query" placeholder="lastUpdate Min">
+        <input type="number" ng-model="limit" class="input-medium search-query" placeholder="Limit">
+
+        <button type="submit" class="btn" ng-click="search()">Search</button>
+    </form>
+
+    <div>
+        <ul class="dynamic-grid" angular-grid="articles" ag-grid-width="200" ag-gutter-size="20" ag-id="gallery" refresh-on-img-load="false">
+            <li data-ng-repeat="article in articles" class="grid">
+                <p><a ng-href="{{article.url}}" target="_blank"> {{article.titre}}  </a></p>
+                <a ng-href="{{article.url}}" target="_blank"> <img class="grid-img" ng-src='{{article.img}}' data-actual-width="160" data-actual-height="160"> </a>
+                <b>
+                <div class="row">
+                    <div class="col-md-4">P:{{article.prix}}</div>
+                    <div class="col-md-4">I:{{article.indice}}</div>
+                    <div class="col-md-2">{{article.pays}}</div>
+                </div>
+               <!--<div class="row">
+    <div class="col-md-6">{{article.categorie}}</div>
+    <div class="col-md-6">{{article.lastUpdate | date :'d/M HH:mm'}}</div>
+</div>-->
+                </b>
+            </li>
+        </ul>
+    </div>
+
+</div>

@@ -1,0 +1,108 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="amazonPrices">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
+
+    <title>Amazon Prices App</title>
+
+    <!-- SCROLLS -->
+    <!-- load bootstrap -->
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <!-- SPELLS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <!-- load angular -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.7/smart-table.js"></script>
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+    <script src="js/core.js"></script>
+    <script src="js/controllers/smartTableController.js"></script>
+    <script src="js/services/Articles.js"></script>
+</head>
+<!-- SET THE CONTROLLER AND GET ALL TODOS -->
+
+<body ng-controller="smartTableController">
+    <div class="container">
+
+        <!-- HEADER AND TODO COUNT -->
+        <div class="jumbotron text-center">
+            <h1>Article : <span class="label label-info">{{ articles.length }}</span></h1>
+        </div>
+
+
+        <div>
+
+
+            <table st-set-filter="customFilter" st-table="articles" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+
+                        <th st-sort="titre">Titre</th>
+                        <th st-sort="prix">Prix</th>
+                        <th st-sort="indice">Indice</th>
+                        <th st-sort="pays">Pays</th>
+                        <th st-sort="categorie">categorie</th>
+                        <th st-sort="lastUpdate">lastUpdate</th>
+
+                    </tr>
+          <!--<tr>
+    <th></th>
+    <th>
+        <input placeholder="search titre" st-search="'firstName'" />
+    </th>
+    <th>
+        <st-number-range predicate="prix" lower="query.lower" higher="query.higher"></st-number-range>
+    </th>
+    <th>
+        <st-number-range predicate="indice" lower="query.lower" higher="query.higher"></st-number-range>
+    </th>
+    <th>
+        <input placeholder="search pays" st-search="'pays'" />
+    </th>
+    <th>
+        <input placeholder="search categorie" st-search="'categorie'" />
+    </th>
+
+    <th>
+        <st-date-range predicate="lastUpdate" before="query.before" after="query.after"></st-date-range>
+    </th>
+</tr>
+</thead>-->      <tbody>
+                    <tr ng-repeat="row in articles">
+                        <td>
+                            <a ng-href="{{row.url}}" target="_blank"> <img ng-src='{{row.img}}'> </a>
+                        </td>
+                        <td>{{row.titre}}</td>
+                        <td>{{row.prix}}</td>
+                        <td>{{row.indice}}</td>
+                        <td>{{row.pays}}</td>
+                        <td>{{row.categorie}}</td>
+                        <td>{{row.lastUpdate | date}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
