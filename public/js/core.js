@@ -4,8 +4,8 @@ var myApp = angular.module('amazonPrices', ['ngTable', 'ngRoute', 'ui.bootstrap'
 
         // route for the home page
             .when('/', {
-            templateUrl: 'templates/ngTable.html',
-            controller: 'amazonNgTableController'
+            templateUrl: 'templates/ngTableDeals.html',
+            controller: 'amazonNgTableDealsController'
         })
 
         .when('/ngGrid', {
@@ -17,6 +17,10 @@ var myApp = angular.module('amazonPrices', ['ngTable', 'ngRoute', 'ui.bootstrap'
         .when('/ngTable', {
                 templateUrl: 'templates/ngTable.html',
                 controller: 'amazonNgTableController'
+            })
+            .when('/ngTableDeals', {
+                templateUrl: 'templates/ngTableDeals.html',
+                controller: 'amazonNgTableDealsController'
             })
             .otherwise({
                 redirectTo: '/'

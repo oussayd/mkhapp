@@ -24,6 +24,30 @@ var Article = mongoose.model('Article', {
     version: Number
 });
 
+
+
+var Deal = mongoose.model('Deal', {
+    titre: String,
+    asin: String,
+    categorie: String,
+    pays: String,
+    url: String,
+    prix: Number,
+    prixLocaux: {
+        'it': Number,
+        'fr': Number,
+        'de': Number,
+        'couk': Number
+
+    },
+    reduction: Number,
+    reductionGlobale: Number,
+
+    img: String,
+    lastUpdate: Date,
+    version: Number
+});
+
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console
 app.use(bodyParser.urlencoded({
@@ -62,6 +86,68 @@ app.get('/api/articles', function (req, res) {
 
 
 
+// api ---------------------------------------------------------------------
+// get all articles
+app.get('/api/deals', function (req, res) {
+
+    // use mongoose to get all articles in the database
+    Deal.find().where('prix').gt(1).where('reduction').gte(10).sort('-reduction').limit(1000).exec(function (err, deals) {
+        console.log("--------------" + deals.length);
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+
+        res.json(deals); // return all articles in JSON format
+    })
+});
+
+
+
+// create article and send back all articles after creation
+app.post('/api/deals', function (req, res) {
+
+    console.log(req.body);
+    // use mongoose to get all articles in the database
+    // Article.find().where('indice').gt(1).lt(55).where('prix').gt(1).where("lastUpdate").ne(null).sort('-lastUpdate').exec(function (err, articles) 
+
+
+
+    var searchReq = Deal.find();
+    if (req.body.prixMax)
+        searchReq = searchReq.where('prix').lte(req.body.prixMax);
+    if (req.body.prixMin)
+        searchReq = searchReq.where('prix').gte(req.body.prixMin);
+    if (req.body.reductionMax)
+        searchReq = searchReq.where('reduction').lte(req.body.reductionMax);
+    if (req.body.reductionMin)
+        searchReq = searchReq.where('reduction').gte(req.body.reductionMin);
+    if (req.body.reductionMax)
+        searchReq = searchReq.where('reductionGlobale').lte(req.body.reductionGlMax);
+    if (req.body.reductionMin)
+        searchReq = searchReq.where('reductionGlobale').gte(req.body.reductionGlMin);
+    if (req.body.versionMax)
+        searchReq = searchReq.where('version').lte(req.body.versionMax);
+    if (req.body.versionMin)
+        searchReq = searchReq.where('version').gte(req.body.versionMin);
+    if (req.body.lastUpdateMax)
+        searchReq = searchReq.where('lastUpdate').lte(req.body.lastUpdateMax);
+    if (req.body.lastUpdateMin)
+        searchReq = searchReq.where('lastUpdate').gte(req.body.lastUpdateMin);
+
+    var limit = req.body.limit ? req.body.limit : 500;
+    searchReq = searchReq.limit(limit);
+    console.log(searchReq);
+    searchReq.where("lastUpdate").ne(null).sort('-reduction').exec(function (err, articles) {
+        console.log("--------------" + articles.length);
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err)
+            res.send(err)
+
+        res.json(articles); // return all articles in JSON format
+    })
+
+});
+
 
 // create article and send back all articles after creation
 app.post('/api/articles', function (req, res) {
@@ -69,8 +155,6 @@ app.post('/api/articles', function (req, res) {
     console.log(req.body);
     // use mongoose to get all articles in the database
     // Article.find().where('indice').gt(1).lt(55).where('prix').gt(1).where("lastUpdate").ne(null).sort('-lastUpdate').exec(function (err, articles) 
-
-
 
 
 
