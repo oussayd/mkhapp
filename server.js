@@ -40,6 +40,7 @@ var Deal = mongoose.model('Deal', {
         'couk': Number
 
     },
+    stock: Number,
     reduction: Number,
     reductionGlobale: Number,
 
@@ -91,7 +92,7 @@ app.get('/api/articles', function (req, res) {
 app.get('/api/deals', function (req, res) {
 
     // use mongoose to get all articles in the database
-    Deal.find().where('prix').gt(1).where('reduction').gte(10).sort('-reduction').limit(1000).exec(function (err, deals) {
+    Deal.find().where('prix').gt(1).where('reduction').gte(10).sort('-lastUpdate').limit(1000).exec(function (err, deals) {
         console.log("--------------" + deals.length);
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
@@ -113,6 +114,37 @@ app.post('/api/deals', function (req, res) {
 
 
     var searchReq = Deal.find();
+
+    if (req.body.categorie && req.body.pays) {
+        searchReq = Deal.find({
+            "categorie": {
+                "$regex": req.body.categorie,
+                "$options": "i"
+            },
+            "pays": {
+                "$regex": req.body.pays,
+                "$options": "i"
+            }
+        });
+
+    } else if (req.body.pays) {
+        searchReq = Deal.find({
+
+            "pays": {
+                "$regex": req.body.pays,
+                "$options": "i"
+            }
+        });
+    } else if (req.body.categorie) {
+
+        searchReq = Deal.find({
+            "categorie": {
+                "$regex": req.body.categorie,
+                "$options": "i"
+            }
+        });
+    }
+
     if (req.body.prixMax)
         searchReq = searchReq.where('prix').lte(req.body.prixMax);
     if (req.body.prixMin)
@@ -121,9 +153,9 @@ app.post('/api/deals', function (req, res) {
         searchReq = searchReq.where('reduction').lte(req.body.reductionMax);
     if (req.body.reductionMin)
         searchReq = searchReq.where('reduction').gte(req.body.reductionMin);
-    if (req.body.reductionMax)
+    if (req.body.reductionGlMax)
         searchReq = searchReq.where('reductionGlobale').lte(req.body.reductionGlMax);
-    if (req.body.reductionMin)
+    if (req.body.reductionGlMin)
         searchReq = searchReq.where('reductionGlobale').gte(req.body.reductionGlMin);
     if (req.body.versionMax)
         searchReq = searchReq.where('version').lte(req.body.versionMax);
@@ -133,11 +165,17 @@ app.post('/api/deals', function (req, res) {
         searchReq = searchReq.where('lastUpdate').lte(req.body.lastUpdateMax);
     if (req.body.lastUpdateMin)
         searchReq = searchReq.where('lastUpdate').gte(req.body.lastUpdateMin);
+    if (req.body.stockMax)
+        searchReq = searchReq.where('stock').lte(req.body.stockMax);
+
+
+
+
 
     var limit = req.body.limit ? req.body.limit : 500;
     searchReq = searchReq.limit(limit);
     console.log(searchReq);
-    searchReq.where("lastUpdate").ne(null).sort('-reduction').exec(function (err, articles) {
+    searchReq.where("lastUpdate").ne(null).sort('-lastUpdate').exec(function (err, articles) {
         console.log("--------------" + articles.length);
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
@@ -175,6 +213,10 @@ app.post('/api/articles', function (req, res) {
         searchReq = searchReq.where('lastUpdate').lte(req.body.lastUpdateMax);
     if (req.body.lastUpdateMin)
         searchReq = searchReq.where('lastUpdate').gte(req.body.lastUpdateMin);
+    if (req.body.stockMax)
+        searchReq = searchReq.where('stock').lte(req.body.stockMax);
+    if (req.body.pays)
+        searchReq = searchReq.where('pays').eq(req.body.pays);
 
     var limit = req.body.limit ? req.body.limit : 100;
     searchReq = searchReq.limit(limit);

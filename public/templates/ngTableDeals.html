@@ -17,10 +17,17 @@
 
             <input type="number" ng-model="reductionMax" class="input-mini" placeholder="Reduction Max">
             <input type="number" ng-model="reductionMin" class="input-mini" placeholder="Reduction Min">
+            <input type="text" ng-model="pays" class="input-mini" placeholder="Pays">
+
         </div>
         <div>
             <input type="number" ng-model="reductionGlMax" class="input-mini" placeholder="Reduction Globale Max">
             <input type="number" ng-model="reductionGlMin" class="input-mini" placeholder="Reduction Gloable Min">
+            <input type="text" ng-model="categorie" class="input-mini" placeholder="Categorie">
+
+            <input type="number" ng-model="stockMax" class="input-mini" placeholder="Stock Max">
+
+
             <!--
         <input type="number" ng-model="versionMax" class="input-medium search-query" placeholder="Version Max">
         <input type="number" ng-model="versionMin" class="input-medium search-query" placeholder="Version Min">-->
@@ -45,6 +52,9 @@
                 <td title="'Prix'" filter="{ prix: 'number'}" sortable="'prix'">
                     {{article.prix}}</td>
 
+                <td title="'Strock'" filter="{ stock: 'number'}" sortable="'stock'">
+                    {{article.stock}}</td>
+
                 <td title="'Reduction'" filter="{ reduction: 'number'}" sortable="'reduction'">
                     {{article.reduction}}</td>
                 <td title="'reductionGlobale'" filter="{ reductionGlobale: 'number'}" sortable="'reductionGlobale'">
@@ -53,10 +63,10 @@
                     {{article.pays}}</td>
                 <td title="'Categorie'" filter="{ categorie: 'text'}" sortable="'categorie'">
                     {{article.categorie}}</td>
-                <td title="'FR'">{{article.prixLocaux.fr }}</td>
-                <td title="'UK'">{{article.prixLocaux.couk }}</td>
-                <td title="'DE'"> {{article.prixLocaux.de }}</td>
-                <td title="'IT'">{{article.prixLocaux.it }}</td>
+                <td title="'FR'" filter="{ prixLocaux.fr : 'number'}" sortable="'prixLocaux.fr'">{{article.prixLocaux.fr }}</td>
+                <td title="'UK'" filter="{ prixLocaux.couk : 'number'}" sortable="'prixLocaux.couk'">{{article.prixLocaux.couk }}</td>
+                <td title="'DE'" filter="{ prixLocaux.de : 'number'}" sortable="'prixLocaux.de'"> {{article.prixLocaux.de }}</td>
+                <td title="'IT'" filter="{ prixLocaux.it : 'number'}" sortable="'prixLocaux.it'">{{article.prixLocaux.it }}</td>
                 <!--<td title="'LastUpdate'" filter="{ lastUpdate: 'text'}" sortable="'lastUpdate'">
     {{article.lastUpdate | date :'medium'}}</td>-->
 

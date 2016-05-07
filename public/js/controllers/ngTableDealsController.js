@@ -24,14 +24,18 @@ angular.module('amazonPrices').controller('amazonNgTableDealsController', ['$sco
                 reductionMin: $scope.reductionMin,
                 reductionGlMax: $scope.reductionGlMax,
                 reductionGlMin: $scope.reductionGlMin,
+                categorie: $scope.categorie,
                 limit: $scope.limit,
                 versionMax: $scope.versionMax,
                 versionMin: $scope.versionMin,
                 lastUpdateMax: $scope.lastUpdateMax,
                 lastUpdateMin: $scope.lastUpdateMin,
+                stockMax: $scope.stockMax,
                 categoriesList: $scope.categoriesList,
                 titre: $scope.titre,
-                paysList: $scope.paysList
+                paysList: $scope.paysList,
+                pays: $scope.pays
+
             }
         }
 
