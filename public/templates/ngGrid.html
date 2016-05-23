@@ -8,29 +8,43 @@
     <!--
     <div range-slider min="minPrice" max="maxPrice" model-min="userMinPrice" model-max="userMaxPrice" step="5" attach-handle-values="true"></div>-->
 
-
-    <form class="well form-search">
+    <form class="well form-inline">
         <label>Search:</label>
-        <input type="number" ng-model="prixMax" class="input-medium search-query" placeholder="Prix Max">
-        <input type="number" ng-model="prixMin" class="input-medium search-query" placeholder="Prix Min">
+        <div>
+            <input type="number" ng-model="prixMax" class="input-mini" placeholder="Prix Max">
+            <input type="number" ng-model="prixMin" class="input-mini" placeholder="Prix Min">
 
-        <input type="number" ng-model="indiceMax" class="input-medium search-query" placeholder="Indice Max">
-        <input type="number" ng-model="indiceMin" class="input-medium search-query" placeholder="Indice Min">
+            <input type="number" ng-model="reductionMax" class="input-mini" placeholder="Reduction Max">
+            <input type="number" ng-model="reductionMin" class="input-mini" placeholder="Reduction Min">
+            <input type="text" ng-model="pays" class="input-mini" placeholder="Pays">
 
+        </div>
+        <div>
+            <input type="number" ng-model="reductionGlMax" class="input-mini" placeholder="Reduction Globale Max">
+            <input type="number" ng-model="reductionGlMin" class="input-mini" placeholder="Reduction Gloable Min">
+            <input type="text" ng-model="categorie" class="input-mini" placeholder="Categorie">
+
+            <input type="number" ng-model="stockMax" class="input-mini" placeholder="Stock Max">
+
+
+            <!--
         <input type="number" ng-model="versionMax" class="input-medium search-query" placeholder="Version Max">
-        <input type="number" ng-model="versionMin" class="input-medium search-query" placeholder="Version Min">
-        <input type="date" ng-model="lastUpdateMax" class="input-medium search-query" placeholder="lastUpdate Max">
-        <input type="date" ng-model="lastUpdateMin" class="input-medium search-query" placeholder="lastUpdate Min">
-        <input type="number" ng-model="limit" class="input-medium search-query" placeholder="Limit">
+        <input type="number" ng-model="versionMin" class="input-medium search-query" placeholder="Version Min">-->
+            <!--
+<input type="date" ng-model="lastUpdateMax" class="input-medium search-query" placeholder="lastUpdate Max">
+<input type="date" ng-model="lastUpdateMin" class="input-medium search-query" placeholder="lastUpdate Min">-->
+            <input type="number" ng-model="limit" class="input-small search-query" placeholder="Limit">
 
-        <button type="submit" class="btn" ng-click="search()">Search</button>
+            <button type="submit" class="btn" ng-click="search()">Search</button>
+        </div>
     </form>
+
 
     <div>
         <ul class="dynamic-grid" angular-grid="articles" ag-grid-width="200" ag-gutter-size="20" ag-id="gallery" refresh-on-img-load="false">
             <li data-ng-repeat="article in articles" class="grid">
                 <p><a ng-href="{{article.url}}" target="_blank"> {{article.titre}}  </a></p>
-                <a ng-href="{{article.url}}" target="_blank"> <img class="grid-img" ng-src='{{article.img}}' data-actual-width="160" data-actual-height="160"> </a>
+                <a ng-href="{{article.url}}" target="_blank"> <img class="grid-img" ng-src='{{article.img}}' data-actual-width="100" data-actual-height="100"> </a>
                 <b>
                 <div class="row">
                     <div class="col-md-4">P:{{article.prix}}</div>

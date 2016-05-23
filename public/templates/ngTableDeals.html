@@ -45,31 +45,30 @@
         <table ng-table="tableParams" class="table table-condensed table-bordered table-striped" show-filter="true">
             <tr ng-repeat="article in $data">
                 <td title="'Image'">
-                    <a ng-href="{{article.url}}" target="_blank"> <img ng-src='{{article.img}}'> </a>
+                    <a ng-href="{{article.url}}" target="_blank"> <img style="width:100px;height:100px;" ng-src='{{article.img}}'></a>
                 </td>
                 <td title="'Titre'" filter="{ titre: 'text'}" sortable="'titre'">
                     <a ng-href="{{article.url}}" target="_blank"> {{article.titre}}  </a></td>
                 <td title="'Prix'" filter="{ prix: 'number'}" sortable="'prix'">
                     {{article.prix}}</td>
 
-                <td title="'Strock'" filter="{ stock: 'number'}" sortable="'stock'">
+                <td title="'Stock'" filter="{ stock: 'number'}" sortable="'stock'">
                     {{article.stock}}</td>
 
-                <td title="'Reduction'" filter="{ reduction: 'number'}" sortable="'reduction'">
+                <td title="'Red'" filter="{ reduction: 'number'}" sortable="'reduction'">
                     {{article.reduction}}</td>
-                <td title="'reductionGlobale'" filter="{ reductionGlobale: 'number'}" sortable="'reductionGlobale'">
+                <td title="'Red G'" filter="{ reductionGlobale: 'number'}" sortable="'reductionGlobale'">
                     {{article.reductionGlobale}}</td>
                 <td title="'Pays'" filter="{ pays: 'text'}" sortable="'pays'">
                     {{article.pays}}</td>
                 <td title="'Categorie'" filter="{ categorie: 'text'}" sortable="'categorie'">
                     {{article.categorie}}</td>
-                <td title="'FR'" filter="{ prixLocaux.fr : 'number'}" sortable="'prixLocaux.fr'">{{article.prixLocaux.fr }}</td>
-                <td title="'UK'" filter="{ prixLocaux.couk : 'number'}" sortable="'prixLocaux.couk'">{{article.prixLocaux.couk }}</td>
-                <td title="'DE'" filter="{ prixLocaux.de : 'number'}" sortable="'prixLocaux.de'"> {{article.prixLocaux.de }}</td>
-                <td title="'IT'" filter="{ prixLocaux.it : 'number'}" sortable="'prixLocaux.it'">{{article.prixLocaux.it }}</td>
-                <!--<td title="'LastUpdate'" filter="{ lastUpdate: 'text'}" sortable="'lastUpdate'">
-    {{article.lastUpdate | date :'medium'}}</td>-->
-
+                <td style="color:blue;" title="'FR'" filter="{ prixLocaux.fr : 'number'}" sortable="'prixLocaux.fr'">{{article.prixLocaux.fr }}</td>
+                <td style="color:red;" title="'UK'" filter="{ prixLocaux.couk : 'number'}" sortable="'prixLocaux.couk'">{{article.prixLocaux.couk }}</td>
+                <td title="'DE'" filter="{ prixLocaux.de : 'number'}" sortable="'prixLocaux.de'"> <b>{{article.prixLocaux.de }}</b></td>
+                <td style="color:green;" title="'IT'" filter="{ prixLocaux.it : 'number'}" sortable="'prixLocaux.it'">{{article.prixLocaux.it }}</td>
+                <td title="'Date'" filter="{ lastUpdate: 'text'}" sortable="'lastUpdate'">
+                    {{article.lastUpdate | timeAgo:'hh:mm' }} </td>
             </tr>
         </table>
     </div>

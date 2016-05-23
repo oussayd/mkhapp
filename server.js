@@ -92,7 +92,7 @@ app.get('/api/articles', function (req, res) {
 app.get('/api/deals', function (req, res) {
 
     // use mongoose to get all articles in the database
-    Deal.find().where('prix').gt(1).where('reduction').gte(10).sort('-lastUpdate').limit(1000).exec(function (err, deals) {
+    Deal.find().where('prix').gt(1).where('reduction').gte(10).sort('-lastUpdate').limit(500).exec(function (err, deals) {
         console.log("--------------" + deals.length);
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
@@ -117,7 +117,7 @@ app.post('/api/deals', function (req, res) {
 
     if (req.body.categorie && req.body.pays) {
         searchReq = Deal.find({
-            "categorie": {
+            "titre": {
                 "$regex": req.body.categorie,
                 "$options": "i"
             },
@@ -138,7 +138,7 @@ app.post('/api/deals', function (req, res) {
     } else if (req.body.categorie) {
 
         searchReq = Deal.find({
-            "categorie": {
+            "titre": {
                 "$regex": req.body.categorie,
                 "$options": "i"
             }
