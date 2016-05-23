@@ -1,15 +1,6 @@
 angular.module('amazonPrices').controller('amazonNgTableController', ['$scope', '$http', 'Articles', 'NgTableParams', function ($scope, $http, Articles, NgTableParams) {
     $scope.loading = true;
 
-
-    // set available range
-    $scope.minPrice = 100;
-    $scope.maxPrice = 999;
-
-    // default the user's values to the available range
-    $scope.userMinPrice = $scope.minPrice;
-    $scope.userMaxPrice = $scope.maxPrice;
-
     $scope.search = function () {
 
         var req = {
@@ -35,7 +26,7 @@ angular.module('amazonPrices').controller('amazonNgTableController', ['$scope', 
 
             $scope.articles = rep.data;
             $scope.tableParams = new NgTableParams({
-                count: 100
+                count: 200
             }, {
                 counts: [100, 200, 500],
                 data: rep.data
@@ -52,7 +43,7 @@ angular.module('amazonPrices').controller('amazonNgTableController', ['$scope', 
 
         $scope.articles = data;
         $scope.tableParams = new NgTableParams({
-            count: 100
+            count: 200
         }, {
             counts: [100, 200, 500],
             data: data

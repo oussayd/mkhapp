@@ -1,4 +1,4 @@
-var myApp = angular.module('amazonPrices', ['ngTable', 'ngRoute', 'ui.bootstrap', 'ui-rangeSlider', 'angularGrid'])
+var myApp = angular.module('amazonPrices', ['ngTable', 'ngRoute', 'ui.bootstrap', 'ui-rangeSlider', 'angularGrid', 'angular-duration-format', 'yaru22.angular-timeago'])
     .config(function ($routeProvider) {
         $routeProvider
 
@@ -10,7 +10,7 @@ var myApp = angular.module('amazonPrices', ['ngTable', 'ngRoute', 'ui.bootstrap'
 
         .when('/ngGrid', {
             templateUrl: 'templates/ngGrid.html',
-            controller: 'amazonNgTableController'
+            controller: 'amazonNgTableDealsController'
         })
 
         // route for the contact page

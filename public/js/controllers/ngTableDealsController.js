@@ -10,6 +10,7 @@ angular.module('amazonPrices').controller('amazonNgTableDealsController', ['$sco
     $scope.userMinPrice = $scope.minPrice;
     $scope.userMaxPrice = $scope.maxPrice;
 
+    $scope.today = new Date();
     $scope.search = function () {
 
         var req = {
@@ -43,7 +44,7 @@ angular.module('amazonPrices').controller('amazonNgTableDealsController', ['$sco
 
             $scope.articles = rep.data;
             $scope.tableParams = new NgTableParams({
-                count: 100
+                count: 200
             }, {
                 counts: [100, 200, 500],
                 data: rep.data
@@ -60,7 +61,7 @@ angular.module('amazonPrices').controller('amazonNgTableDealsController', ['$sco
 
         $scope.articles = data;
         $scope.tableParams = new NgTableParams({
-            count: 100
+            count: 200
         }, {
             counts: [100, 200, 500],
             data: data
