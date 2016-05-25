@@ -115,14 +115,57 @@ app.post('/api/deals', function (req, res) {
 
     var searchReq = Deal.find();
 
-    if (req.body.categorie && req.body.pays) {
+    if (req.body.categorie && req.body.pays && req.body.titre) {
         searchReq = Deal.find({
-            "titre": {
+            "categorie": {
                 "$regex": req.body.categorie,
                 "$options": "i"
             },
             "pays": {
                 "$regex": req.body.pays,
+                "$options": "i"
+            },
+            "titre": {
+                "$regex": req.body.titre,
+                "$options": "i"
+            }
+        });
+
+    } else
+    if (req.body.categorie && req.body.pays) {
+        searchReq = Deal.find({
+            "categorie": {
+                "$regex": req.body.categorie,
+                "$options": "i"
+            },
+            "pays": {
+                "$regex": req.body.pays,
+                "$options": "i"
+            }
+        });
+
+    } else if (req.body.pays && req.body.titre) {
+        searchReq = Deal.find({
+
+            "pays": {
+                "$regex": req.body.pays,
+                "$options": "i"
+            },
+            "titre": {
+                "$regex": req.body.titre,
+                "$options": "i"
+            }
+        });
+
+    } else if (req.body.categorie && req.body.titre) {
+        searchReq = Deal.find({
+            "categorie": {
+                "$regex": req.body.categorie,
+                "$options": "i"
+            },
+
+            "titre": {
+                "$regex": req.body.titre,
                 "$options": "i"
             }
         });
@@ -138,12 +181,21 @@ app.post('/api/deals', function (req, res) {
     } else if (req.body.categorie) {
 
         searchReq = Deal.find({
-            "titre": {
+            "categorie": {
                 "$regex": req.body.categorie,
                 "$options": "i"
             }
         });
+    } else if (req.body.titre) {
+
+        searchReq = Deal.find({
+            "titre": {
+                "$regex": req.body.titre,
+                "$options": "i"
+            }
+        });
     }
+
 
     if (req.body.prixMax)
         searchReq = searchReq.where('prix').lte(req.body.prixMax);
