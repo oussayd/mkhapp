@@ -18,9 +18,14 @@ var myApp = angular.module('amazonPrices', ['ngTable', 'ngRoute', 'ui.bootstrap'
                 templateUrl: 'templates/ngTable.html',
                 controller: 'amazonNgTableController'
             })
+        
             .when('/ngTableDeals', {
                 templateUrl: 'templates/ngTableDeals.html',
                 controller: 'amazonNgTableDealsController'
+            })
+        .when('/ngPagination', {
+                templateUrl: 'templates/ngTablePagination.html',
+                controller: 'amazonNgTablePaginationController'
             })
             .otherwise({
                 redirectTo: '/'

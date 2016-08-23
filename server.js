@@ -6,27 +6,9 @@ var morgan = require('morgan'); // log requests to the console (express4)
 var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
 
-// configuration =================
+var mongoosePaginate = require('mongoose-paginate');
 
-mongoose.connect('mongodb://localhost:27017/amazon'); // connect to mongoDB database on modulus.io
-
-
-// define model =================
-var Article = mongoose.model('Article', {
-    titre: String,
-    asin: String,
-    pays: String,
-    categorie: String,
-    prix: Number,
-    indice: Number,
-    img: String,
-    lastUpdate: Date,
-    version: Number
-});
-
-
-
-var Deal = mongoose.model('Deal', {
+var schemaDeal = new mongoose.Schema({
     titre: String,
     asin: String,
     categorie: String,
@@ -48,6 +30,30 @@ var Deal = mongoose.model('Deal', {
     lastUpdate: Date,
     version: Number
 });
+schemaDeal.plugin(mongoosePaginate);
+
+
+// configuration =================
+
+mongoose.connect('mongodb://localhost:27017/amazon'); // connect to mongoDB database on modulus.io
+
+
+// define model =================
+var Article = mongoose.model('Article', {
+    titre: String,
+    asin: String,
+    pays: String,
+    categorie: String,
+    prix: Number,
+    indice: Number,
+    img: String,
+    lastUpdate: Date,
+    version: Number
+});
+
+
+
+var Deal = mongoose.model('Deal', schemaDeal);
 
 app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
 app.use(morgan('dev')); // log every request to the console
@@ -216,7 +222,7 @@ app.post('/api/deals', function (req, res) {
     if (req.body.lastUpdateMax)
         searchReq = searchReq.where('lastUpdate').lte(req.body.lastUpdateMax);
     if (req.body.lastUpdateMin)
-        searchReq = searchReq.where('lastUpdate').gte(req.body.lastUpdateMin);
+        searchReq = searchReq.where('lastUpdate').gte(new Date(req.body.lastUpdateMin));
     if (req.body.stockMax)
         searchReq = searchReq.where('stock').lte(req.body.stockMax);
 
