@@ -25,6 +25,8 @@ angular.module('amazonPrices').controller('amazonNgTableDealsController', ['$sco
                 reductionMin: $scope.reductionMin,
                 reductionGlMax: $scope.reductionGlMax,
                 reductionGlMin: $scope.reductionGlMin,
+                reductionEstMax: $scope.reductionEstMax,
+                reductionEstMin: $scope.reductionEstMin,
                 categorie: $scope.categorie,
                 limit: $scope.limit,
                 versionMax: $scope.versionMax,

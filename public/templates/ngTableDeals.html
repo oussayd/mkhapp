@@ -22,6 +22,13 @@
 
         </div>
         <div>
+
+            <input type="number" ng-model="reductionEstMax" class="input-mini" placeholder="Reduction Est Max">
+            <input type="number" ng-model="reductionEstMin" class="input-mini" placeholder="Reduction Est Min">
+
+
+        </div>
+        <div>
             <input type="number" ng-model="reductionGlMax" class="input-mini" placeholder="Reduction Globale Max">
             <input type="number" ng-model="reductionGlMin" class="input-mini" placeholder="Reduction Gloable Min">
             <input type="text" ng-model="titre" class="input-mini" placeholder="Titre">
@@ -53,23 +60,25 @@
                 <td title="'Titre'" filter="{ titre: 'text'}" sortable="'titre'">
                     <a ng-href="{{article.url}}" target="_blank"> {{article.titre}}  </a></td>
                 <td title="'Prix'" filter="{ prix: 'number'}" sortable="'prix'">
-                    {{article.prix}}</td>
+                    {{article.prix.toFixed(2)}}</td>
 
                 <td title="'Stock'" filter="{ stock: 'number'}" sortable="'stock'">
                     {{article.stock}}</td>
 
                 <td title="'Red'" filter="{ reduction: 'number'}" sortable="'reduction'">
-                    {{article.reduction}}</td>
+                    {{article.reduction.toFixed(2)}}</td>
+                <td title="'Est'" filter="{ reductionEstim: 'number'}" sortable="'reductionEstim'">
+                    {{article.reductionEstim.toFixed(2)}}</td>
                 <td title="'Red G'" filter="{ reductionGlobale: 'number'}" sortable="'reductionGlobale'">
-                    {{article.reductionGlobale}}</td>
+                    {{article.reductionGlobale.toFixed(2)}}</td>
                 <td title="'Pays'" filter="{ pays: 'text'}" sortable="'pays'">
                     {{article.pays}}</td>
                 <td title="'Categorie'" filter="{ categorie: 'text'}" sortable="'categorie'">
                     {{article.categorie}}</td>
-                <td style="color:blue;" title="'FR'" filter="{ prixLocaux.fr : 'number'}" sortable="'prixLocaux.fr'">{{article.prixLocaux.fr }}</td>
-                <td style="color:red;" title="'UK'" filter="{ prixLocaux.couk : 'number'}" sortable="'prixLocaux.couk'">{{article.prixLocaux.couk }}</td>
-                <td title="'DE'" filter="{ prixLocaux.de : 'number'}" sortable="'prixLocaux.de'"> <b>{{article.prixLocaux.de }}</b></td>
-                <td style="color:green;" title="'IT'" filter="{ prixLocaux.it : 'number'}" sortable="'prixLocaux.it'">{{article.prixLocaux.it }}</td>
+                <td style="color:blue;" title="'FR'" filter="{ prixLocaux.fr : 'number'}" sortable="'prixLocaux.fr'">{{article.prixLocaux.fr.toFixed(2) }}</td>
+                <td style="color:red;" title="'UK'" filter="{ prixLocaux.couk : 'number'}" sortable="'prixLocaux.couk'">{{article.prixLocaux.couk.toFixed(2) }}</td>
+                <td title="'DE'" filter="{ prixLocaux.de : 'number'}" sortable="'prixLocaux.de'"> <b>{{article.prixLocaux.de.toFixed(2) }}</b></td>
+                <td style="color:green;" title="'IT'" filter="{ prixLocaux.it : 'number'}" sortable="'prixLocaux.it'">{{article.prixLocaux.it.toFixed(2) }}</td>
                 <td title="'Date'" filter="{ lastUpdate: 'text'}" sortable="'lastUpdate'">
                     {{article.lastUpdate | timeAgo:'hh:mm' }} </td>
             </tr>

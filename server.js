@@ -24,6 +24,8 @@ var schemaDeal = new mongoose.Schema({
     },
     stock: Number,
     reduction: Number,
+    reductionEstim: Number,
+
     reductionGlobale: Number,
 
     img: String,
@@ -211,6 +213,10 @@ app.post('/api/deals', function (req, res) {
         searchReq = searchReq.where('reduction').lte(req.body.reductionMax);
     if (req.body.reductionMin)
         searchReq = searchReq.where('reduction').gte(req.body.reductionMin);
+    if (req.body.reductionEstMax)
+        searchReq = searchReq.where('reductionEstim').lte(req.body.reductionEstMax);
+    if (req.body.reductionEstMin)
+        searchReq = searchReq.where('reductionEstim').gte(req.body.reductionEstMin);
     if (req.body.reductionGlMax)
         searchReq = searchReq.where('reductionGlobale').lte(req.body.reductionGlMax);
     if (req.body.reductionGlMin)
