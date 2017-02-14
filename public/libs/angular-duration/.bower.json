@@ -1,0 +1,34 @@
+{
+  "name": "angular-duration",
+  "version": "1.1.0",
+  "main": [
+    "angular-duration.min.js"
+  ],
+  "ignore": [
+    ".jshintrc",
+    "demo",
+    "test",
+    ".gitignore",
+    "Gruntfile.js",
+    "package.json",
+    ".bowerrc",
+    ".travis.yml",
+    "src"
+  ],
+  "devDependencies": {
+    "angular": "1.2.18",
+    "bootstrap": "3.1.1",
+    "angular-mocks": "1.2.18",
+    "angular-bootstrap": "~0.11.0"
+  },
+  "homepage": "https://github.com/ketilovre/angular-duration",
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.0",
+    "commit": "4a56a25ff460bf46f923e130b3312ec1fa01b047"
+  },
+  "_source": "https://github.com/ketilovre/angular-duration.git",
+  "_target": "^1.1.0",
+  "_originalSource": "angular-duration"
+}
