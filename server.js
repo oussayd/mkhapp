@@ -69,8 +69,8 @@ app.use(bodyParser.json({
 app.use(methodOverride());
 
 // listen (start app with node server.js) ======================================
-app.listen(8080, "0.0.0.0");
-console.log("App listening on port 8080");
+app.listen(8910, "0.0.0.0");
+console.log("App listening on port 8910");
 
 
 
@@ -83,7 +83,7 @@ console.log("App listening on port 8080");
 app.get('/api/articles', function (req, res) {
 
     // use mongoose to get all articles in the database
-    Article.find().where('version').lte(1).where('indice').gt(1).lt(55).where('prix').gt(1).where("lastUpdate").ne(null).sort('-lastUpdate').limit(100).exec(function (err, articles) {
+    Article.find().where('reductionEstim').gt(1).lt(55).where('prix').gt(1).where("lastUpdate").ne(null).sort('-lastUpdate').limit(5000).exec(function (err, articles) {
         console.log("--------------" + articles.length);
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
@@ -100,7 +100,7 @@ app.get('/api/articles', function (req, res) {
 app.get('/api/deals', function (req, res) {
 
     // use mongoose to get all articles in the database
-    Deal.find().where('prix').gt(1).where('reduction').gte(10).sort('-lastUpdate').limit(500).exec(function (err, deals) {
+    Deal.find().where('prix').gt(1).where('reductionEstim').gte(10).sort('-lastUpdate').limit(5000).exec(function (err, deals) {
         console.log("--------------" + deals.length);
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err)
@@ -236,7 +236,7 @@ app.post('/api/deals', function (req, res) {
 
 
 
-    var limit = req.body.limit ? req.body.limit : 500;
+    var limit = req.body.limit ? req.body.limit : 5000;
     searchReq = searchReq.limit(limit);
     console.log(searchReq);
     searchReq.where("lastUpdate").ne(null).sort('-lastUpdate').exec(function (err, articles) {
